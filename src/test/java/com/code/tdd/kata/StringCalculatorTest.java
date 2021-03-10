@@ -6,7 +6,7 @@ import org.junit.Test;
 
 
 public class StringCalculatorTest {
-	
+
 	/*
 	 *  ""     -> 0
 	 *  "1"    -> 1
@@ -18,9 +18,9 @@ public class StringCalculatorTest {
 		assertEquals(Integer.valueOf(0), stringCalc.add(""));
 		assertEquals(Integer.valueOf(1), stringCalc.add("1"));
 		assertEquals(Integer.valueOf(3), stringCalc.add("1,2"));
-		
+
 	}
-	
+
 	/*
 	 *  "1,2,3"        -> 6
 	 *  "1,5,7,8,25"   -> 46
@@ -31,7 +31,7 @@ public class StringCalculatorTest {
 		assertEquals(Integer.valueOf(6), stringCalc.add("1,2,3"));
 		assertEquals(Integer.valueOf(46), stringCalc.add("1,5,7,8,25"));
 	}
-	
+
 	/*
 	 *  "1\n2,3" -> 6
 	 *  "1,\n"   -> 1
@@ -42,7 +42,7 @@ public class StringCalculatorTest {
 		assertEquals(Integer.valueOf(6), stringCalc.add("1\n2,3"));
 		assertEquals(Integer.valueOf(1), stringCalc.add("1,\n"));
 	}
-	
+
 	/*
 	 *  "//;\n1;2" -> 3
 	 */
@@ -50,5 +50,23 @@ public class StringCalculatorTest {
 	public void addDiffDelNumbersTest() {
 		StringCalculator stringCalc = new StringCalculator();
 		assertEquals(Integer.valueOf(3), stringCalc.add("//;\n1;2"));
+	}
+
+	/*
+	 *  "1,2,-1" -> -1
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void addThrowWErrorForNegativeTest() {
+		StringCalculator stringCalc = new StringCalculator();
+		try
+		{
+			stringCalc.add("1,2,-1");
+		}
+		catch(RuntimeException re)
+		{
+			String message = "Negatives not allowed: -1";
+			assertEquals(message, re.getMessage());
+			throw re;
+		}
 	}
 }
