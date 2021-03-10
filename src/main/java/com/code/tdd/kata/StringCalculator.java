@@ -15,7 +15,10 @@ public class StringCalculator {
 		List<Integer> splittedNumbers = new ArrayList<>();
 		List<Integer> negNumbers = new ArrayList<>();
 		Arrays.stream(numbers.split(delimiter+"|\n"))
-		.filter(str -> !str.isEmpty()).map(Integer::valueOf).forEach(val->{
+		.filter(str -> !str.isEmpty())
+		.map(Integer::valueOf)
+		.filter(num -> num<1000)
+		.forEach(val->{
 			if(val>0) {
 				splittedNumbers.add(val);
 			} else {
@@ -24,7 +27,7 @@ public class StringCalculator {
 		});
 		if(negNumbers.size() > 0) {
 			throw new IllegalArgumentException("Negatives not allowed: " + negNumbers.stream().map(String::valueOf)
-				    .collect(Collectors.joining(",")));
+					.collect(Collectors.joining(",")));
 		}
 		return splittedNumbers.stream().mapToInt(Integer::intValue).sum();
 	}

@@ -69,4 +69,14 @@ public class StringCalculatorTest {
 			throw re;
 		}
 	}
+	/*
+	 *  "1,2,3,1000"        -> 6
+	 *  "//;\n1;2,1000" -> 3
+	 */
+	@Test
+	public void addIgnoreBigNumberTest() {
+		StringCalculator stringCalc = new StringCalculator();
+		assertEquals(Integer.valueOf(6), stringCalc.add("1,2,3,1000"));
+		assertEquals(Integer.valueOf(3), stringCalc.add("//;\n1;2;1000"));
+	}
 }
