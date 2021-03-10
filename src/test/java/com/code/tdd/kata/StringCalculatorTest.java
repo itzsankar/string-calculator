@@ -77,6 +77,25 @@ public class StringCalculatorTest {
 	public void addIgnoreBigNumberTest() {
 		StringCalculator stringCalc = new StringCalculator();
 		assertEquals(Integer.valueOf(6), stringCalc.add("1,2,3,1000"));
-		assertEquals(Integer.valueOf(3), stringCalc.add("//;\n1;2;1000"));
+	}
+	/*
+	 *  "1,2,3,1000"        -> 6
+	 *  "[*;]\n1*;2*;3" -> 6
+	 */
+	@Test
+	public void addanyLengthDelimeterTest() {
+		StringCalculator stringCalc = new StringCalculator();
+		assertEquals(Integer.valueOf(6), stringCalc.add("1,2,3,1000"));
+		assertEquals(Integer.valueOf(6), stringCalc.add("//[*;]\n1*;2*;3"));
+	}
+
+	/*
+	 *  "1,2,3,1000"        -> 6
+	 *  "[*;]\n1*;2*;3" -> 6
+	 */
+	@Test
+	public void addMultiDelimeterTest() {
+		StringCalculator stringCalc = new StringCalculator();
+		assertEquals(Integer.valueOf(6), stringCalc.add("//[*][%]\n1*2%3"));
 	}
 }
