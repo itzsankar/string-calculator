@@ -6,14 +6,8 @@ import java.util.stream.Collectors;
 
 public class StringCalculator {
 	public Integer add(String numbers) {
-		List<Integer> splittedNumbers = Arrays.stream(numbers.split(","))
+		List<Integer> splittedNumbers = Arrays.stream(numbers.split(",|\n"))
 				.filter(str -> !str.isEmpty()).map(Integer::valueOf).collect(Collectors.toList());
-		if(splittedNumbers.size() == 0) {
-			return 0;
-		}
-		if(splittedNumbers.size() == 1) {
-			return splittedNumbers.get(0);
-		}
 		return splittedNumbers.stream().mapToInt(Integer::intValue).sum();
 	}
 
