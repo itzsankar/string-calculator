@@ -20,4 +20,15 @@ public class StringCalculatorTest {
 		assertEquals(Integer.valueOf(3), stringCalc.add("1,2"));
 		
 	}
+	
+	/*
+	 *  "1,2,3"        -> 6
+	 *  "1,5,7,8,25"   -> 46
+	 */
+	@Test
+	public void addUnknownNumbersTest() {
+		StringCalculator stringCalc = new StringCalculator();
+		assertEquals(Integer.valueOf(6), stringCalc.add("1,2,3"));
+		assertEquals(Integer.valueOf(46), stringCalc.add("1,5,7,8,25"));
+	}
 }

@@ -14,7 +14,7 @@ public class StringCalculator {
 		if(splittedNumbers.size() == 1) {
 			return splittedNumbers.get(0);
 		}
-		return splittedNumbers.get(0)+ splittedNumbers.get(1);
+		return splittedNumbers.stream().mapToInt(Integer::intValue).sum();
 	}
 
 }
