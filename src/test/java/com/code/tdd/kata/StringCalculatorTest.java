@@ -42,4 +42,13 @@ public class StringCalculatorTest {
 		assertEquals(Integer.valueOf(6), stringCalc.add("1\n2,3"));
 		assertEquals(Integer.valueOf(1), stringCalc.add("1,\n"));
 	}
+	
+	/*
+	 *  "//;\n1;2" -> 3
+	 */
+	@Test
+	public void addDiffDelNumbersTest() {
+		StringCalculator stringCalc = new StringCalculator();
+		assertEquals(Integer.valueOf(3), stringCalc.add("//;\n1;2"));
+	}
 }
